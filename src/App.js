@@ -1,7 +1,7 @@
-import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import { HomePages } from './pages/home/HomePages';
-import { UserDetailPage } from './pages/user-detail/UserDetailPage';
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import { HomePages } from "./pages/home/HomePages";
+import { UserDetailPage } from "./pages/user-detail/UserDetailPage";
 
 function App() {
   return (
@@ -10,7 +10,6 @@ function App() {
         <Route path="/" element={<HomePages />} />
         <Route path="/:id" element={<UserDetailPage />} />
       </Routes>
-
     </div>
   );
 }
