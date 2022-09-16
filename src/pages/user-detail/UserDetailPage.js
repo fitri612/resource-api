@@ -1,43 +1,49 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import API from '../../config';
-
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import API from "../../config";
 
 export const UserDetailPage = () => {
-  const [user, setUsers] = useState(null);
+  const [title, setTitle] = useState();
   const params = useParams();
-  useEffect( () => {
-    const getUsers = async () => {
-      try{
-        const { data } = await axios.get(`${API}users/${params.id}`);
-        setUsers(data);
+  useEffect(() => {
+    const getTitle = async () => {
+      try {
+        const { data } = await axios.get(`${API}todos/${params?.id}`);
         console.log(data);
-
-      }
-      catch(err){
+        setTitle(data);
+      } catch (err) {
         //
       }
-    }
-    getUsers();
-  }, []);
+    };
+    getTitle();
+  });
 
-    
   return (
-    <div>
-      <h1>Ini user detail page {params.id}</h1>
-
-      <div>
-        Name: {user?.name}
+    <div className="container" style={{margin: '100px'}}>
+      <div className="judul">
+        <h1>Detail Pages</h1>
       </div>
-      <div>
-        Email: {user?.email}
+      <div
+        className="card border-light mb-3"
+        style={{
+          maxWidth: "50%",
+          marginLeft: "320px",
+          marginRight: "150px",
+          padding: "20px",
+          alignItems: "center",
+        }}
+      >
+        <div class="card-title" style={{ fontWeight: "400", fontSize: "20px" }}>
+          {title?.id}
+        </div>
+        <div class="card-text" style={{ marginBottom: "10px" }}>
+          Title : {title?.title}
+        </div>
+        <div class="card-text" style={{ marginBottom: "10px" }}>
+          Completed : {title?.completed ? "Yes" : "No"}
+        </div>
       </div>
-      <div>
-        Company: {user?.company.name}
-      </div>
-
-      
     </div>
-  )
-}
+  );
+};
